@@ -99,6 +99,14 @@ describe("Aged Brie", () => {
   });
 
   test("Quality does not go over 50", () => {
+    const gildedRose = new Shop([new Item("Aged Brie", 1, 1) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).to.equal(0);
+    expect(items[0].quality).to.equal(2);
+  });
+
+
+  test("Quality does not go over 50", () => {
     const gildedRose = new Shop([new Item("Aged Brie", -1, 50) ]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(-2);
@@ -106,7 +114,6 @@ describe("Aged Brie", () => {
   });
 
   test("Quality increases after sell in date has passed", () => {
-    // Bug. Should be 5 after the update
     const gildedRose = new Shop([new Item("Aged Brie", -2, 4) ]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(-3);
