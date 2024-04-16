@@ -230,5 +230,34 @@ describe("Backstage passes to a TAFKAL80ETC concert", () => {
 
 });
 
+describe("Conjured", () => {
+
+  test("Sell in date drops by one", () => {
+    const gildedRose = new Shop([new Item("Conjured", 10, 40) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).to.equal(9);
+  });
+
+  test("Quality reduces by 2 when sell in date is greater than 0", () => {
+    const gildedRose = new Shop([new Item("Conjured", 1, 40) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(38);
+  });
+
+  test("Quality reduces by 4 when sell in date is 0 or less", () => {
+    const gildedRose = new Shop([new Item("Conjured", 0, 40) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(36);
+    expect(items[0].sellIn).to.equal(-1);
+  });
+
+  test("Quality reduces cannot be smaller than 0", () => {
+    const gildedRose = new Shop([new Item("Conjured", -2, 3) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(0);
+    expect(items[0].sellIn).to.equal(-3);
+  });
+
+});
 
 

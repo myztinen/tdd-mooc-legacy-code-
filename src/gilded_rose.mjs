@@ -19,6 +19,8 @@ export class Shop {
         this.updateAgeBrieQuality(i);
       } else if (this.items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
         this.updateBackstagePassQuality(i);
+      } else if (this.items[i].name == "Conjured") {
+        this.updateConjuredQuality(i);
       } else {
         this.updateQualityForNormalItems(i);
       }
@@ -26,17 +28,24 @@ export class Shop {
     return this.items;
   }
 
+  updateConjuredQuality(i) {
+    this.reduceQuality(i, 2);
+    if (this.items[i].sellIn < 1) {
+      this.reduceQuality(i, 2);
+    } 
+    this.items[i].sellIn--;
+  }
   
   updateAgeBrieQuality(i) {
     if (this.items[i].sellIn < 1) {
       this.increaseQuality(i, 2);
     } else this.increaseQuality(i);
-    this.items[i].sellIn--;// = this.items[i].sellIn - 1;
+    this.items[i].sellIn--;
   }
 
   updateBackstagePassQuality(i) {
     if (this.items[i].sellIn < 1) {
-      this.items[i].quality = this.items[i].quality - this.items[i].quality;
+      this.items[i].quality = 0;
     }
     if (this.items[i].sellIn > 0) {
       this.increaseQuality(i);
