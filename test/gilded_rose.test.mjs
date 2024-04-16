@@ -73,6 +73,12 @@ describe("For normal items in store after updating quality", () => {
     expect(items[0].quality).to.equal(2);
   });
 
+  test("items sell in date is reduced", () => {
+    const gildedRose = new Shop([new Item("Random", 2, 3)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).to.equal(1);
+  });
+
 });
 
 
