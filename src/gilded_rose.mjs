@@ -13,11 +13,11 @@ export class Shop {
 
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
-      if(this.items[i].name == "Sulfuras, Hand of Ragnaros" ) {
+      if(this.items[i].name == "Sulfuras" ) {
 
       } else if (this.items[i].name == "Aged Brie") {
         this.updateAgeBrieQuality(i);
-      } else if (this.items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
+      } else if (this.items[i].name == "Backstage passes") {
         this.updateBackstagePassQuality(i);
       } else if (this.items[i].name == "Conjured") {
         this.updateConjuredQuality(i);

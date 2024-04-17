@@ -127,22 +127,22 @@ describe("Aged Brie", () => {
   });
 });
 
-describe("Sulfuras, Hand of Ragnaros", () => {
+describe("Sulfuras", () => {
 
   test("Sell in date is not updated after quality update", () => {
-    const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 10, 80) ]);
+    const gildedRose = new Shop([new Item("Sulfuras", 10, 80) ]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(10);
   });
 
   test("Quality stays the same", () => {
-    const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 1, 80) ]);
+    const gildedRose = new Shop([new Item("Sulfuras", 1, 80) ]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(80);
   });
 
   test("Quality stays the same after sell in date", () => {
-    const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", -1, 80) ]);
+    const gildedRose = new Shop([new Item("Sulfuras", -1, 80) ]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(80);
     expect(items[0].sellIn).to.equal(-1);
@@ -150,79 +150,79 @@ describe("Sulfuras, Hand of Ragnaros", () => {
 
 });
 
-describe("Backstage passes to a TAFKAL80ETC concert", () => {
-  let pass = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 25);
-  let anotherPass = new Item("Backstage passes to a TAFKAL80ETC concert", 1, 25);
-  let thirdPass = new Item("Backstage passes to a TAFKAL80ETC concert", 4, 49);
-  let fouthPass = new Item("Backstage passes to a TAFKAL80ETC concert", 6, 30);
+describe("Backstage passes", () => {
+  let pass = new Item("Backstage passes", 11, 25);
+  let anotherPass = new Item("Backstage passes", 1, 25);
+  let thirdPass = new Item("Backstage passes", 4, 49);
+  let fouthPass = new Item("Backstage passes", 6, 30);
 
-  const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 11, 25)]);
+  const gildedRose = new Shop([new Item("Backstage passes", 11, 25)]);
 
   test("Quality increases by one when sell in date is greater than 10", () => {
-    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 11, 25)]);
+    const gildedRose = new Shop([new Item("Backstage passes", 11, 25)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(10);
     expect(items[0].quality).to.equal(26);
   });
 
   test("Quality increases by two when sell in date is greater than 5 but less than 10", () => {
-    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 10, 25)]);
+    const gildedRose = new Shop([new Item("Backstage passes", 10, 25)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(9);
     expect(items[0].quality).to.equal(27);
   });
 
   test("Quality increases by three when sell in date is greater than 0 but less than 5", () => {
-    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 5, 25)]);
+    const gildedRose = new Shop([new Item("Backstage passes", 5, 25)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(4);
     expect(items[0].quality).to.equal(28);
   });
 
   test("Quality increases by one when sell in date is 6", () => {
-    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 6, 25)]);
+    const gildedRose = new Shop([new Item("Backstage passes", 6, 25)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(5);
     expect(items[0].quality).to.equal(27);
   });
 
   test("Quality drops to zero when sell in date is 1", () => {
-    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 1, 25)]);
+    const gildedRose = new Shop([new Item("Backstage passes", 1, 25)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(0);
     expect(items[0].quality).to.equal(28);
   });
 
   test("Quality drops to zero when sell in date is 0", () => {
-    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 0, 25)]);
+    const gildedRose = new Shop([new Item("Backstage passes", 0, 25)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(-1);
     expect(items[0].quality).to.equal(0);
   });
 
   test("Quality drops to zero when sell in date is -1", () => {
-    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", -1, 25)]);
+    const gildedRose = new Shop([new Item("Backstage passes", -1, 25)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(-2);
     expect(items[0].quality).to.equal(0);
   });
 
   test("Quality does not increase over 50 when sell in date is 10", () => {
-    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49)]);
+    const gildedRose = new Shop([new Item("Backstage passes", 10, 49)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(9);
     expect(items[0].quality).to.equal(50);
   });
 
   test("Quality does not increase over when sell in date is 5", () => {
-    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 6, 49)]);
+    const gildedRose = new Shop([new Item("Backstage passes", 6, 49)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(5);
     expect(items[0].quality).to.equal(50);
   });
 
   test("Quality does not increase over 50 when sell in date is 11", () => {
-    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 3, 49)]);
+    const gildedRose = new Shop([new Item("Backstage passes", 3, 49)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(2);
     expect(items[0].quality).to.equal(50);
